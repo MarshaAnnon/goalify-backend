@@ -3,9 +3,14 @@ class Api::V1::GoalsController < ApplicationController
 
   # GET /goals
   def index
-    @goals = Goal.all
-
-    render json: @goals
+    if logged_in?
+      @goals = current_user.goals
+    render json: GoalSerializer.new(@goals)
+  else 
+    render json: {
+      error: "Must be logged in to see topics"
+    }
+  end
   end
 
   # GET /goals/1
