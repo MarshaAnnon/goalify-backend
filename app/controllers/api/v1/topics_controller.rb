@@ -3,9 +3,14 @@ class Api::V1::TopicsController < ApplicationController
 
   # GET /topics
   def index
-    @topics = Topic.all
-
-    render json: @topics
+    if logged_in?
+      @topics = current_user.topics
+      render json: TopicSerializer.new(@topics)
+    else 
+      render json: {
+        error: "Must be logged in to see topics"
+      }
+    end
   end
 
   # GET /topics/1
@@ -48,4 +53,5 @@ class Api::V1::TopicsController < ApplicationController
     def topic_params
       params.require(:topic).permit(:name, :user_id)
     end
+
 end
