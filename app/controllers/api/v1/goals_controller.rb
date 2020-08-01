@@ -1,7 +1,6 @@
 class Api::V1::GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :update, :destroy]
 
-  # GET /goals
   def index
     if logged_in?
       @goals = current_user.goals
@@ -13,23 +12,22 @@ class Api::V1::GoalsController < ApplicationController
   end
   end
 
-  # GET /goals/1
   def show
     render json: @goal
   end
 
-  # POST /goals
   def create
     @goal = Goal.new(goal_params)
-
     if @goal.save
-      render json: @goal, status: :created, location: @goal
+      render json: GoalSerializer.new(@goal), status: :created
     else
-      render json: @goal.errors, status: :unprocessable_entity
+      error_resp = {
+        error: @goal.errors.full_messages.to_sentence
+      }
+      render json: error_resp, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /goals/1
   def update
     if @goal.update(goal_params)
       render json: @goal
@@ -38,9 +36,15 @@ class Api::V1::GoalsController < ApplicationController
     end
   end
 
-  # DELETE /goals/1
   def destroy
-    @goal.destroy
+    if @goal.destroy
+      render json: { data: "Goal successfully destroyed" }, status: :ok
+    else
+      error_resp = {
+        error: "Goal not found, so could not be destoyed"
+      }
+      render json: error_resp, status: :unprocessable_entity
+    end
   end
 
   private
