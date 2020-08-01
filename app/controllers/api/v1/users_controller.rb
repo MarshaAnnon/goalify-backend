@@ -2,6 +2,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def show
+    binding.pry
     user_json = UserSerializer.new(@user).serialized_json
     render json: user_json
   end
