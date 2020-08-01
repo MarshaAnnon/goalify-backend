@@ -1,20 +1,20 @@
 class Api::V1::GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :update, :destroy]
 
-  def index
-    if logged_in?
-      @goals = current_user.goals
-    render json: GoalSerializer.new(@goals)
-  else 
-    render json: {
-      error: "Must be logged in to see topics"
-    }
-  end
-  end
+  # def index
+  #   if logged_in?
+  #     @goals = current_user.goals
+  #   render json: GoalSerializer.new(@goals)
+  # else 
+  #   render json: {
+  #     error: "Must be logged in to see topics"
+  #   }
+  # end
+  # end
 
-  def show
-    render json: @goal
-  end
+  # def show
+  #   render json: @goal
+  # end
 
   def create
     @goal = Goal.new(goal_params)
@@ -28,13 +28,13 @@ class Api::V1::GoalsController < ApplicationController
     end
   end
 
-  def update
-    if @goal.update(goal_params)
-      render json: @goal
-    else
-      render json: @goal.errors, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @goal.update(goal_params)
+  #     render json: @goal
+  #   else
+  #     render json: @goal.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   def destroy
     if @goal.destroy
