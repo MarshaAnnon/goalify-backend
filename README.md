@@ -1,24 +1,45 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Goalify is a web application where a user create goals within different topics/areas of life. The front-end is built on React & Redux and utilizing a Rails back-end API.
 
-Things you may want to cover:
+Installing
+Clone front-end and back-end repositories to chosen directory.
 
-* Ruby version
+git clone git@github.com:marshaannon-goalify-backend.git
+git clone git@github.com:marshaannon-goalify-frontend.git
+Within goalify-backend, perform the following:
 
-* System dependencies
+Install gems.
+bundle install
+Create Postgres database.
 
-* Configuration
+Perform migrations and run seed data.
 
-* Database creation
+rails db:create
+rails db:migrate
+rails db:seed
+Start servers by cding into the directory:
 
-* Database initialization
+goalify-backend
+rails s
+goalify-frontend
+yarn start
+Navigate to http://localhost:3001/ in browser.
 
-* How to run the test suite
+Contributing
+When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
-* Services (job queues, cache servers, search engines, etc.)
+Pull Request Process
+1.Ensure any install or build dependencies are removed before the end of the layer when doing a build.
 
-* Deployment instructions
+2.Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
 
-* ...
+3.Increase the version numbers in any examples files and the README.md to the new version that this Pull Request would represent. The versioning scheme we use is SemVer.
+
+4.You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
+
+Versioning: For the versions available, see the tags on this repository.
+
+Authors: Marsha Annon - initial work
+
+License: This project is licensed under the MIT License - see the LICENSE.md file for details
