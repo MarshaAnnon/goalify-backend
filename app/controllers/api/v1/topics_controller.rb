@@ -12,10 +12,6 @@ class Api::V1::TopicsController < ApplicationController
     end
   end
 
-  # def show
-  #   render json: @topic
-  # end
-
   def create
     @topic = current_user.topics.build(topic_params)
 
