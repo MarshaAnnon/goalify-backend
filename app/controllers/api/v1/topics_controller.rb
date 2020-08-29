@@ -55,5 +55,5 @@ class Api::V1::TopicsController < ApplicationController
     def topic_params
       params.require(:topic).permit(:name, :user_id)
     end
-
+    
 end
